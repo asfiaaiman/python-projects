@@ -1,28 +1,23 @@
-**# Travel Weather Planner**
+# Travel Weather Planner
 
-A beginner-friendly Python project that practices **booleans, conditional statements, comparison operators, logical operators, and nested conditionals** by building a travel weather planner.
+A beginner-friendly Python project built to practice the fundamentals of **Boolean values**, **conditional statements**, **comparison operators**, **logical operators**, and **nested conditionals**.
 
-**## 📌 Problem**
+The project determines whether a user can commute based on the travel distance, weather conditions, and available transportation options.
 
-Build a travel weather planner that determines whether a user can commute based on:
+## 📌 Project Overview
+
+This project demonstrates how Python can use Boolean logic and conditional statements to make decisions based on different travel conditions.
+
+It checks:
 
 * Distance to travel in miles
 * Whether it is raining
 * Whether the user has a bicycle
 * Whether the user has a car
 * Whether the user has a ride-share app
+* Whether commuting is possible under the given conditions
 
-The program should:
-
-1. Check whether a valid distance has been provided.
-2. Determine whether commuting is possible for distances of 1 mile or less.
-3. Determine whether commuting is possible for distances between 1 and 6 miles.
-4. Determine whether commuting is possible for distances greater than 6 miles.
-5. Consider weather conditions when deciding whether walking or cycling is possible.
-6. Check whether a bicycle, car, or ride-share option is available.
-7. Print `True` or `False` based on the commuting conditions.
-
-**## 🛠️ Technologies Used**
+## 🛠️ Technologies Used
 
 * **Python 3**
 * Boolean values
@@ -33,9 +28,9 @@ The program should:
 * Variables
 * `print()` function
 
-**## 🚀 How It Works**
+## 🚀 How It Works
 
-**### 1. Set the Travel Information**
+### 1. Set the Travel Information
 
 The program starts by defining the distance, weather conditions, and available transportation options:
 
@@ -49,18 +44,40 @@ has_ride_share_app = True
 
 These variables are used by the conditional statements to determine whether commuting is possible.
 
-**### 2. Check for a Falsy Distance**
+The Boolean variables contain either `True` or `False` and represent whether a particular condition is active or available.
 
-The program first checks whether `distance_mi` is a falsy value, such as `0`:
+### 2. Check for a Falsy Distance
+
+The program first checks whether the travel distance is a falsy value:
 
 ```python
 if not distance_mi:
     print(False)
 ```
 
-If there is no distance to travel, the program prints `False`.
+In Python, `0` is considered a **falsy value**.
 
-**### 3. Check Distances of 1 Mile or Less**
+Since the current value is:
+
+```python
+distance_mi = 0
+```
+
+the condition:
+
+```python
+not distance_mi
+```
+
+evaluates to `True`.
+
+Therefore, the program prints:
+
+```text
+False
+```
+
+### 3. Check Distances of 1 Mile or Less
 
 For a distance of **1 mile or less**, commuting is possible only when it is not raining:
 
@@ -72,11 +89,37 @@ elif distance_mi <= 1:
         print(False)
 ```
 
-The `not` operator checks whether it is **not raining**.
+The comparison operator:
 
-If it is raining, the program prints `False`.
+```python
+distance_mi <= 1
+```
 
-**### 4. Check Distances Between 1 and 6 Miles**
+checks whether the distance is less than or equal to 1 mile.
+
+The `not` operator is then used to check whether it is **not raining**.
+
+If:
+
+```python
+is_raining = False
+```
+
+the user can commute.
+
+If:
+
+```python
+is_raining = True
+```
+
+the program prints:
+
+```text
+False
+```
+
+### 4. Check Distances Between 1 and 6 Miles
 
 For distances **greater than 1 mile and up to 6 miles**, the user must have a bicycle and it must not be raining:
 
@@ -88,16 +131,36 @@ elif distance_mi <= 6:
         print(False)
 ```
 
-The `and` operator means both conditions must be true:
+The `and` operator means that **both conditions must be true**.
 
-* The user must have a bike.
-* It must not be raining.
+The user must:
 
-If either condition is false, commuting is not possible.
+* Have a bicycle
+* Not be traveling in the rain
 
-**### 5. Check Distances Greater Than 6 Miles**
+For example:
 
-For distances **greater than 6 miles**, the user can commute if they have a car **or** a ride-share app:
+```python
+distance_mi = 3
+is_raining = False
+has_bike = True
+```
+
+Both conditions are satisfied, so the result is:
+
+```text
+True
+```
+
+If there is no bicycle or it is raining, the result is:
+
+```text
+False
+```
+
+### 5. Check Distances Greater Than 6 Miles
+
+For distances **greater than 6 miles**, the program checks whether the user has a car or a ride-share app:
 
 ```python
 else:
@@ -107,41 +170,146 @@ else:
         print(False)
 ```
 
-The `or` operator means that only one of the transportation options needs to be available.
+The `or` operator means that **at least one condition must be true**.
 
-**### 6. Commuting Conditions**
+The user can commute if they have:
+
+* A car, or
+* A ride-share app
+
+For example:
+
+```python
+has_car = True
+has_ride_share_app = False
+```
+
+The user still has a transportation option, so the result is:
+
+```text
+True
+```
+
+If both are unavailable:
+
+```python
+has_car = False
+has_ride_share_app = False
+```
+
+the result is:
+
+```text
+False
+```
+
+## 🚦 Commuting Conditions
 
 The program follows these rules:
 
-| Distance            | Conditions                     | Result  |
-| ------------------- | ------------------------------ | ------- |
-| `0` or falsy        | No distance                    | `False` |
-| `≤ 1 mile`          | Not raining                    | `True`  |
-| `≤ 1 mile`          | Raining                        | `False` |
-| `> 1 and ≤ 6 miles` | Bike available and not raining | `True`  |
-| `> 1 and ≤ 6 miles` | No bike or raining             | `False` |
-| `> 6 miles`         | Car or ride-share available    | `True`  |
-| `> 6 miles`         | No car and no ride-share       | `False` |
+| **Distance**        | **Conditions**                 | **Result** |
+| ------------------- | ------------------------------ | ---------- |
+| `0` or falsy        | No distance                    | `False`    |
+| `≤ 1 mile`          | Not raining                    | `True`     |
+| `≤ 1 mile`          | Raining                        | `False`    |
+| `> 1 and ≤ 6 miles` | Bike available and not raining | `True`     |
+| `> 1 and ≤ 6 miles` | No bike or raining             | `False`    |
+| `> 6 miles`         | Car or ride-share available    | `True`     |
+| `> 6 miles`         | No car and no ride-share       | `False`    |
 
-**### 7. Display the Result**
+This creates a simple decision-making system based on distance, weather, and transportation.
 
-The program uses the `print()` function to display whether commuting is possible:
+## 🧠 Boolean Logic
+
+This project uses three important logical operators.
+
+### `not`
+
+The `not` operator reverses a Boolean value.
+
+For example:
 
 ```python
-print(True)
+is_raining = False
+
+not is_raining
 ```
 
-or:
+produces:
+
+```text
+True
+```
+
+It is used in the program to determine whether it is safe to walk or cycle based on the weather.
+
+### `and`
+
+The `and` operator requires **both conditions** to be true.
 
 ```python
-print(False)
+has_bike and not is_raining
 ```
 
-The result depends on the distance, weather, and available transportation.
+For example:
 
-**## 📤 Expected Output**
+```text
+has_bike = True
+is_raining = False
+```
 
-With the current values:
+Both conditions are satisfied, so the result is:
+
+```text
+True
+```
+
+### `or`
+
+The `or` operator requires **at least one condition** to be true.
+
+```python
+has_car or has_ride_share_app
+```
+
+For example:
+
+```text
+has_car = True
+has_ride_share_app = False
+```
+
+The first condition is true, so the result is:
+
+```text
+True
+```
+
+Python, mercifully, makes this part rather readable.
+
+## 🔎 Nested Conditionals
+
+The project also demonstrates **nested conditional statements**.
+
+A conditional statement is placed inside another conditional:
+
+```python
+elif distance_mi <= 1:
+    if not is_raining:
+        print(True)
+    else:
+        print(False)
+```
+
+The outer condition determines the travel distance.
+
+The inner condition then determines whether the weather allows the user to commute.
+
+Nested conditionals are useful when one decision depends on another decision.
+
+## 📤 Expected Output
+
+With the initial values:
 
 ```python
 distance_mi = 0
@@ -151,13 +319,15 @@ has_car = True
 has_ride_share_app = True
 ```
 
-The distance is a falsy value, so the expected output is:
+the distance is `0`, which is a falsy value.
+
+Therefore, the expected output is:
 
 ```text
 False
 ```
 
-For example, if the values were:
+Another example:
 
 ```python
 distance_mi = 3
@@ -167,43 +337,64 @@ has_car = False
 has_ride_share_app = False
 ```
 
-The expected output would be:
+The distance is between 1 and 6 miles, the user has a bicycle, and it is not raining.
+
+The expected output is:
 
 ```text
 True
 ```
 
-**## 📚 Concepts Practiced**
+## 📚 Concepts Practiced
 
-| Concept              | Example                               |
-| -------------------- | ------------------------------------- |
-| Variables            | `distance_mi = 0`                     |
-| Booleans             | `is_raining = True`                   |
-| Comparison operators | `distance_mi <= 1`                    |
-| `if` statement       | `if not distance_mi:`                 |
-| `elif` statement     | `elif distance_mi <= 6:`              |
-| `else` statement     | `else:`                               |
-| `and` operator       | `has_bike and not is_raining`         |
-| `or` operator        | `has_car or has_ride_share_app`       |
-| `not` operator       | `not is_raining`                      |
-| Nested conditionals  | Conditions inside another conditional |
-| `print()` function   | `print(True)`                         |
+This project reinforces the following Python concepts:
 
-**## ▶️ How to Run**
+| **Concept**          | **Example**                     |
+| -------------------- | ------------------------------- |
+| Variables            | `distance_mi = 0`               |
+| Boolean values       | `is_raining = True`             |
+| Comparison operators | `distance_mi <= 1`              |
+| `if` statement       | `if not distance_mi:`           |
+| `elif` statement     | `elif distance_mi <= 6:`        |
+| `else` statement     | `else:`                         |
+| `and` operator       | `has_bike and not is_raining`   |
+| `or` operator        | `has_car or has_ride_share_app` |
+| `not` operator       | `not is_raining`                |
+| Nested conditionals  | `if` inside another `if`        |
+| Falsy values         | `distance_mi = 0`               |
+| `print()` function   | `print(True)`                   |
 
-Make sure Python 3 is installed.
+## ▶️ How to Run
 
-From the project directory, run:
+Make sure **Python 3** is installed on your computer.
+
+Save the program in a Python file:
+
+```text
+index.py
+```
+
+Then run:
 
 ```bash
 python index.py
 ```
 
-**## 🎯 Learning Goal**
+On systems where Python 3 is accessed using `python3`, run:
 
-The goal of this project is to understand how Python makes decisions using **conditional statements and Boolean logic**, while applying those concepts to a practical travel and weather scenario.
+```bash
+python3 index.py
+```
 
-**## 👩‍💻 Author**
+## 🎯 Learning Goal
+
+The main goal of this project is to build a strong foundation in Python **Boolean logic and conditional decision-making**.
+
+The exercise demonstrates how multiple conditions can be combined using `and`, `or`, and `not` to create practical decision-making logic.
+
+These concepts provide a foundation for more advanced Python topics such as **loops, functions, lists, dictionaries, error handling, and data processing**.
+
+## 👩‍💻 Author
 
 **Asfia Aiman**
 
